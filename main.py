@@ -20,13 +20,17 @@ cry_opciones2 = ['esta llorando junto con ','se siente mal y esta llorando con',
 happy_gifs = ['https://c.tenor.com/0hgRWZ9VBCAAAAAC/nao-tomori-anime.gif','https://c.tenor.com/-n2jhe7c1MUAAAAC/anime-my-dress-up-darling.gif','https://c.tenor.com/C14UrfBl8OwAAAAC/anime-smile-asai-akira-smile.gif','https://c.tenor.com/bVm05NUoyF0AAAAC/bokuno-hero-academia-izuku.gif','https://c.tenor.com/nPNyng1D6pYAAAAC/chinatsu-yoshikawa-yuruyuri.gif','https://c.tenor.com/A8Xon5cq5sQAAAAC/bell-cranel-dan-machi.gif','https://c.tenor.com/nBWlYPbKxzwAAAAC/anime-happy.gif']
 happy_opciones = ['Esta muy feliz','Esta feliz','Esta muy contento!','Esta happy!']
 happy_opciones2 = ['Esta feliz con ','Esta muy felix con', 'Esta muy contento junto con']
+
+joya_gifs = ['https://i.pinimg.com/474x/18/d4/ee/18d4eeeea521d00eb1dbd3cbad8fa42a.jpg','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCIR4z17pBKc-jamTx-bpIFE--OB-j3HMB0Q&usqp=CAU','https://c.tenor.com/jLclEBv5WukAAAAd/el-risitas-laughing.gif','https://c.tenor.com/QgTx6fv4IpAAAAAd/el-risitas-juan-joya-borja.gif','https://tenor.com/view/spdegguk-cloudvmink-sponge-bob-sponge-bob-old-gif-25382352']
+joya_opciones = ['Esta frezco como lechuga', 'Ta pana', 'Ta joya']
+joya_opciones2 = ['Esta pana con','Esta increible junto con','Ta joya con','Se desvelo y esta joya con']
 #=================================================================================
 #comandos
 
 @bot.command()
 async def whox(ctx):
-    embed = discord.Embed(title="Lista de comandos", )
-    embed.add_field(name="Comandos utiles", value="Ping " "invite ")
+    embed = discord.Embed(title="Lista de comandos", description="**Lista de todos los comandos de whox**", colour=(discord.Colour.random()))
+    embed.add_field(name="Comandos utiles", value="Ping " "invite " "say ")
     embed.add_field(name="Comandos Interaccion", value="cry " "happy " "joya ")
     embed.set_footer(text="Creado por: Dasan#7305")
     await ctx.send(embed=embed)
@@ -44,33 +48,54 @@ async def invite(ctx):
   await ctx.send("Hola aqui esta mi invitacion gracias por apoyarme uniendome a tu servidor!")
   await ctx.send("|| https://discord.com/api/oauth2/authorize?client_id=972320050537168906&permissions=8&scope=bot ||")
 
+@bot.command()
+async def say(ctx, *, text):
+    message = ctx.message
+    await message.delete()
+    await ctx.send(f"{text}")
+
+
+
 #=================================================================================
 #reaccion
 
 @bot.command()
-async def cry(ctx):
-  embed = discord.Embed(description=f"{ctx.author.mention} {random.choice(cry_opciones)}", colour=(discord.Colour.random()))
-  embed.set_image(url=(random.choice(cry_gifs)))
-  await ctx.send(embed=embed)
+async def cry(ctx, member: discord.Member = None):
+  if member is None:
+    await ctx.send(f'{ctx.author.mention} {random.choice(cry_opciones)}')
+    await ctx.send(f'{random.choice(cry_gifs)}')
+  else:
+    await ctx.send(f'{ctx.author.mention} {random.choice(cry_opciones2)} {member.mention}!')
+    await ctx.send(f'{random.choice(cry_gifs)}')
 
 @bot.command()
-async def feliz(ctx):
-  embed = discord.Embed(description=f"{ctx.author.mention} {random.choice(happy_opciones)}", colour=(discord.Colour.random()))
-  embed.set_image(url=(random.choice(happy_gifs)))
-  await ctx.send(embed=embed)
+async def happy(ctx, member: discord.Member = None):
+  if member is None:
+    await ctx.send(f'{ctx.author.mention} {random.choice(happy_opciones)}')
+    await ctx.send(f'{random.choice(happy_gifs)}')
+  else:
+    await ctx.send(f'{ctx.author.mention} {random.choice(happy_opciones2)} {member.mention}!')
+    await ctx.send(f'{random.choice(happy_gifs)}')
 
 @bot.command()
-async def joya(ctx):
-    await ctx.send("Toy joya")
-    await ctx.send('https://tenor.com/view/spdegguk-cloudvmink-sponge-bob-sponge-bob-old-gif-25382352')
+async def joya(ctx, member: discord.Member = None):
+  if member is None:
+    await ctx.send(f'{ctx.author.mention} {random.choice(joya_opciones)}')
+    await ctx.send(f'{random.choice(joya_gifs)}')
+  else:
+    await ctx.send(f'{ctx.author.mention} {random.choice(joya_opciones2)} {member.mention}!')
+    await ctx.send(f'{random.choice(joya_gifs)}')
 
 #===============================================================================
 #eventos y iniciador del bot
 
+
 @bot.event
 async def on_ready():
-    await bot.change_presence(activity=discord.Game(name="Project Whox by Dasan w!whox"))
-    print(""" ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡴⠞⢳⠀⠀⠀⠀⠀
+    total_servers = len(bot.guilds)
+    game = discord.Game(f" w!whox | en {total_servers} servidores | Project Whox by Dasan")
+    await bot.change_presence(status=discord.Status.online, activity=game)
+    print(""" ⠀⠀⠀        ⠀⠀⠀⠀    ⢀⡴⠞⢳⠀⠀⠀⠀⠀
     ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡔⠋⠀⢰⠎⠀⠀⠀⠀⠀
     ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⢆⣤⡞⠃⠀⠀⠀⠀⠀⠀
     ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⢠⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀
@@ -86,4 +111,4 @@ async def on_ready():
     ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠫⠿⠿⠿⠛⠋⠁⠀⠀⠀⠀
     Estoy Despierdo !""")
 
-bot.run('OTcyMzIwMDUwNTM3MTY4OTA2.GRGdJP.psw3c5lQICy9daJGuLF3cMg9YB5hANZYl5yDBc')
+bot.run(os.environ['tk'])

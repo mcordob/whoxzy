@@ -4,6 +4,8 @@ from discord import colour
 import time
 import os
 import random
+from discord.ext import commands
+from pyrandmeme import *
 
 
 # =================================================================================
@@ -50,7 +52,7 @@ async def help(ctx):
     embed.add_field(name="Moderación", value="`clear` ""`nuke`")
     embed.add_field(name="Útiles", value="`Ping` " "`invite` " "`say` ")
     embed.add_field(name="Reacción", value="`cry` " "`happy` " "`joya` ")
-    embed.set_footer(text="Creado por: Dasan#7305")
+    embed.set_footer(text="si necesitas ayuda ve a nuestro discord")
     await ctx.send(embed=embed)
 
 

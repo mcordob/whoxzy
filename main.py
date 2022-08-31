@@ -60,6 +60,7 @@ async def help(ctx):
     embed.add_field(name="Reacción", value="`cry` " "`happy` " "`joya` ")
     embed.add_field(name="Interacción", value="`dance` ")
     embed.add_field(name="Información", value="`bugreport` ")
+    embed.add_field(name="Divertidos", value="`bola8` ")
     embed.set_footer(text="| si necesitas ayuda ve a nuestro discord |")
     await ctx.send(embed=embed)
 
@@ -99,6 +100,18 @@ async def bugreport(ctx, *, text):
     message = ctx.message
     channel = bot.get_channel(1014334553424408688)
     await channel.send(f"{text}")
+
+@bot.command()
+async def bola8(ctx, *, text):
+    pregunta = ctx.message
+    await pregunta.delete()
+    await ctx.send(f"{ctx.author.mention} ha hecho la pregunta")
+    opciones = ['Como yo lo veo, sí.', 'si', 'Positivo', 'En mi punto de vista, si','Convencido', 'Más probable', 'Probabilidades Altas', 'No.','Negativo.', 'No convencido.', 'Quizás', 'No estoy seguro', 'No puedo predecir ahora.', 'Soy perezoso para predecir.', 'Estoy cansado. *Procede a dormir*']
+    respuesta = random.choice(opciones)
+    embed = discord.Embed(title="La magica bola 8 ha hablado!")
+    embed.add_field(name=f"Pregunta: ", value=f"{text}")
+    embed.add_field(name="Respuesta: ", value=f"{respuesta}")
+    await ctx.send(embed=embed)
 
 # https://youtu.be/V4ekOOPMg1k
 # meme https://youtu.be/xYsosWmdvK4

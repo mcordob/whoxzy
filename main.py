@@ -23,6 +23,7 @@ cry_gifs = ['https://c.tenor.com/q0nNfTktQ7wAAAAC/crying-anime.gif',
             'https://c.tenor.com/NHkQKH5CR2kAAAAC/anime-igarashi.gif']
 cry_opciones = ['esta llorando', 'se siente mal y esta llorando', 'oh no esta llorando']
 cry_opciones2 = ['esta llorando junto con ', 'se siente mal y esta llorando con', 'llora con ']
+
 happy_gifs = ['https://c.tenor.com/0hgRWZ9VBCAAAAAC/nao-tomori-anime.gif',
               'https://c.tenor.com/-n2jhe7c1MUAAAAC/anime-my-dress-up-darling.gif',
               'https://c.tenor.com/C14UrfBl8OwAAAAC/anime-smile-asai-akira-smile.gif',
@@ -32,6 +33,7 @@ happy_gifs = ['https://c.tenor.com/0hgRWZ9VBCAAAAAC/nao-tomori-anime.gif',
               'https://c.tenor.com/nBWlYPbKxzwAAAAC/anime-happy.gif']
 happy_opciones = ['Esta muy feliz', 'Esta feliz', 'Esta muy contento!', 'Esta happy!']
 happy_opciones2 = ['Esta feliz con ', 'Esta muy felix con', 'Esta muy contento junto con']
+
 joya_gifs = ['https://i.pinimg.com/474x/18/d4/ee/18d4eeeea521d00eb1dbd3cbad8fa42a.jpg',
              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCIR4z17pBKc-jamTx-bpIFE--OB-j3HMB0Q&usqp=CAU',
              'https://c.tenor.com/jLclEBv5WukAAAAd/el-risitas-laughing.gif',
@@ -40,6 +42,9 @@ joya_gifs = ['https://i.pinimg.com/474x/18/d4/ee/18d4eeeea521d00eb1dbd3cbad8fa42
 joya_opciones = ['Esta frezco como lechuga', 'Ta pana', 'Ta joya']
 joya_opciones2 = ['Esta pana con', 'Esta increible junto con', 'Ta joya con', 'Se desvelo y esta joya con']
 
+dance_gif = ['https://c.tenor.com/QAynbGAhEAoAAAAC/anime-dance-urushi-yaotome.gif','https://c.tenor.com/T2xcx24ke-UAAAAC/2b-dans.gif','https://c.tenor.com/R_1crV7YAH8AAAAd/vtuber-foxplushy.gif','https://c.tenor.com/DT4TI5l1B-kAAAAM/mashiro-mikakunin.gif','https://c.tenor.com/R7zPDg3wEXwAAAAC/anime-dance-gif-loli-dance.gif','https://c.tenor.com/3Mc4IqoPAxAAAAAd/anime-dance.gif','https://c.tenor.com/wknJveQbS7wAAAAd/anime-dance.gif']
+dance_opciones = ['baila!','se emociono y se puso a bailar','baila mucho!','le encanta bailar','se puso a bailar a lo xd']
+dance_opciones2 = ['baila con','se dan unos bailes',' y se dan unos tremendos pasos con']
 
 # =================================================================================
 # comandos
@@ -53,6 +58,7 @@ async def help(ctx):
     embed.add_field(name="Moderación", value="`clear` ""`nuke`")
     embed.add_field(name="Útiles", value="`ping` " "`invite` " "`say` ")
     embed.add_field(name="Reacción", value="`cry` " "`happy` " "`joya` ")
+    embed.add_field(name="Interacción", value="`dance` ")
     embed.add_field(name="Información", value="`bugreport` ")
     embed.set_footer(text="| si necesitas ayuda ve a nuestro discord |")
     await ctx.send(embed=embed)
@@ -128,6 +134,14 @@ async def joya(ctx, member: discord.Member = None):
         await ctx.send(f'{ctx.author.mention} {random.choice(joya_opciones2)} {member.mention}!')
         await ctx.send(f'{random.choice(joya_gifs)}')
 
+@bot.command()
+async def dance(ctx, member: discord.Member = None):
+    if member is None:
+        await ctx.send(f'{ctx.author.mention} {random.choice(dance_opciones)}')
+        await ctx.send(f'{random.choice(dance_gif)}')
+    else:
+        await ctx.send(f'{ctx.author.mention} {random.choice(dance_opciones2)} {member.mention}!')
+        await ctx.send(f'{random.choice(dance_gif)}')
 
 # ===============================================================================
 # eventos y iniciador del bot

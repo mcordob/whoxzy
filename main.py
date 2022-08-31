@@ -4,6 +4,8 @@ from discord import colour
 import time
 import os
 import random
+from requests import get
+import json
 
 #=================================================================================
 
@@ -26,6 +28,7 @@ joya_opciones = ['Esta frezco como lechuga', 'Ta pana', 'Ta joya']
 joya_opciones2 = ['Esta pana con','Esta increible junto con','Ta joya con','Se desvelo y esta joya con']
 #=================================================================================
 #comandos
+#https://python.plainenglish.io/send-an-embed-with-a-discord-bot-in-python-61d34c711046 embeds creacion
 
 @bot.command()
 async def whox(ctx):
@@ -54,8 +57,16 @@ async def say(ctx, *, text):
     await message.delete()
     await ctx.send(f"{text}")
 
+@bot.command(pass_context = True)
+async def clear(ctx, number):
+  msg = []
+  number = int(number)
+async for x in Client.logs_from(ctx.message.channel, limit = number):
+  msg.append(x)
+  await Client.delete_message(msg)
 
-
+#https://youtu.be/V4ekOOPMg1k
+#meme https://youtu.be/xYsosWmdvK4
 #=================================================================================
 #reaccion
 
@@ -85,7 +96,7 @@ async def joya(ctx, member: discord.Member = None):
   else:
     await ctx.send(f'{ctx.author.mention} {random.choice(joya_opciones2)} {member.mention}!')
     await ctx.send(f'{random.choice(joya_gifs)}')
-
+    
 #===============================================================================
 #eventos y iniciador del bot
 

@@ -48,8 +48,9 @@ joya_opciones2 = ['Esta pana con', 'Esta increible junto con', 'Ta joya con', 'S
 async def whox(ctx):
     embed = discord.Embed(title="Lista de comandos", description="**Lista de todos los comandos de whox**",
                           colour=(discord.Colour.random()))
-    embed.add_field(name="Comandos utiles", value="Ping " "invite " "say ")
-    embed.add_field(name="Comandos Interaccion", value="cry " "happy " "joya ")
+    embed.add_field(name="Moderación", value="clear ""nuke ")
+    embed.add_field(name="utiles", value="Ping " "invite " "say " "clear ""nuke ")
+    embed.add_field(name="Interaccion", value="cry " "happy " "joya ")
     embed.set_footer(text="Creado por: Dasan#7305")
     await ctx.send(embed=embed)
 
@@ -76,6 +77,13 @@ async def say(ctx, *, text):
     await message.delete()
     await ctx.send(f"{text}")
 
+@bot.command(aliases= ['nuke'])
+@commands.has_permissions(administrator=True)
+async def clear(ctx, amount :int = -1):
+   if amount == -1:
+       await ctx.channel.purge(limit=1000000)
+   else:
+       await ctx.channel.purge(limit=amount)
 
 # https://youtu.be/V4ekOOPMg1k
 # meme https://youtu.be/xYsosWmdvK4

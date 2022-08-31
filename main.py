@@ -4,7 +4,7 @@ from discord import colour
 import time
 import os
 import random
-
+import discord.utils
 
 
 # =================================================================================
@@ -47,11 +47,14 @@ joya_opciones2 = ['Esta pana con', 'Esta increible junto con', 'Ta joya con', 'S
 
 @bot.command()
 async def help(ctx):
-    embed = discord.Embed(title="Lista de comandos", description="Mi nombre es **Whox**. Este es el listado de mis comandos, si tienes algún problema o duda sin resolver, puedes visitar el servidor de soporte:",colour=(discord.Colour.random()))
+    embed = discord.Embed(description="Mi nombre es **Whox**. Este es el listado de mis comandos, si tienes algún problema o duda sin resolver, puedes visitar el servidor de soporte: [Servidor Minty](https://discord.gg/WkVT8NMpZP)",colour=(discord.Colour.random()))
+    embed.set_author(name="Lista de comandos de Whox",icon_url="https://cdn.discordapp.com/avatars/972320050537168906/f4c9bae157ece5c51e3b2753f9a719bd.png")
+    embed.set_thumbnail(url="https://c.tenor.com/epNMHGvRyHcAAAAd/gigachad-chad.gif")
     embed.add_field(name="Moderación", value="`clear` ""`nuke`")
-    embed.add_field(name="Útiles", value="`Ping` " "`invite` " "`say` ")
+    embed.add_field(name="Útiles", value="`ping` " "`invite` " "`say` ")
     embed.add_field(name="Reacción", value="`cry` " "`happy` " "`joya` ")
-    embed.set_footer(text="si necesitas ayuda ve a nuestro discord")
+    embed.add_field(name="Información", value="`bugreport` ")
+    embed.set_footer(text="| si necesitas ayuda ve a nuestro discord |")
     await ctx.send(embed=embed)
 
 
@@ -85,6 +88,11 @@ async def clear(ctx, amount :int = -1):
    else:
        await ctx.channel.purge(limit=amount)
 
+@bot.command()
+async def bugreport(ctx, *, text):
+    message = ctx.message
+    channel = bot.get_channel(1014334553424408688)
+    await channel.send(f"{text}")
 
 # https://youtu.be/V4ekOOPMg1k
 # meme https://youtu.be/xYsosWmdvK4

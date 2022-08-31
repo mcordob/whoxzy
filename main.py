@@ -10,7 +10,7 @@ import random
 
 intents = discord.Intents.default()
 intents.message_content = True
-bot = commands.Bot(command_prefix='w!', intents=intents)
+bot = commands.Bot(command_prefix='w!', intents=intents, help_command=None)
 # =================================================================================
 # gifs
 cry_gifs = ['https://c.tenor.com/q0nNfTktQ7wAAAAC/crying-anime.gif',
@@ -45,12 +45,11 @@ joya_opciones2 = ['Esta pana con', 'Esta increible junto con', 'Ta joya con', 'S
 # https://python.plainenglish.io/send-an-embed-with-a-discord-bot-in-python-61d34c711046 embeds creacion
 
 @bot.command()
-async def whox(ctx):
-    embed = discord.Embed(title="Lista de comandos", description="**Lista de todos los comandos de whox**",
-                          colour=(discord.Colour.random()))
-    embed.add_field(name="Moderación", value="clear ""nuke ")
-    embed.add_field(name="utiles", value="Ping " "invite " "say " "clear ""nuke ")
-    embed.add_field(name="Interaccion", value="cry " "happy " "joya ")
+async def help(ctx):
+    embed = discord.Embed(title="Lista de comandos", description="Mi nombre es **Whox**. Este es el listado de mis comandos, si tienes algún problema o duda sin resolver, puedes visitar el servidor de soporte:",colour=(discord.Colour.random()))
+    embed.add_field(name="Moderación", value="`clear` ""`nuke`")
+    embed.add_field(name="Útiles", value="`Ping` " "`invite` " "`say` ")
+    embed.add_field(name="Reacción", value="`cry` " "`happy` " "`joya` ")
     embed.set_footer(text="Creado por: Dasan#7305")
     await ctx.send(embed=embed)
 
@@ -84,6 +83,7 @@ async def clear(ctx, amount :int = -1):
        await ctx.channel.purge(limit=1000000)
    else:
        await ctx.channel.purge(limit=amount)
+
 
 # https://youtu.be/V4ekOOPMg1k
 # meme https://youtu.be/xYsosWmdvK4
@@ -126,7 +126,7 @@ async def joya(ctx, member: discord.Member = None):
 @bot.event
 async def on_ready():
     total_servers = len(bot.guilds)
-    game = discord.Game(f" w!whox | en {total_servers} servidores | Project Whox by Dasan")
+    game = discord.Game(f" w!help | en {total_servers} servidores | Project Whox by Dasan")
     await bot.change_presence(status=discord.Status.online, activity=game)
     print(""" ⠀⠀⠀        ⠀⠀⠀⠀    ⢀⡴⠞⢳⠀⠀⠀⠀⠀
     ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡔⠋⠀⢰⠎⠀⠀⠀⠀⠀
@@ -143,6 +143,7 @@ async def on_ready():
     ⠀⠀⠀⠀⠀⠀⠈⠳⢤⣀⡶⠤⣷⣅⡀⠀⠀⠀⣀⡠⢔⠕⠁⠀⠀
     ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠫⠿⠿⠿⠛⠋⠁⠀⠀⠀⠀
     Estoy Despierdo !""")
+
 
 
 bot.run("OTcyMzIwMDUwNTM3MTY4OTA2.GRGdJP.psw3c5lQICy9daJGuLF3cMg9YB5hANZYl5yDBc")

@@ -4,8 +4,7 @@ from discord import colour
 import time
 import os
 import random
-from discord.ext import commands
-from pyrandmeme import *
+
 
 
 # =================================================================================

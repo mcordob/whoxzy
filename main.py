@@ -159,6 +159,7 @@ async def dance(ctx, member: discord.Member = None):
 # ===============================================================================
 # eventos y iniciador del bot
 
+
 @bot.event
 async def on_ready():
     total_servers = len(bot.guilds)
@@ -179,7 +180,6 @@ async def on_ready():
     ⠀⠀⠀⠀⠀⠀⠈⠳⢤⣀⡶⠤⣷⣅⡀⠀⠀⠀⣀⡠⢔⠕⠁⠀⠀
     ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠫⠿⠿⠿⠛⠋⠁⠀⠀⠀⠀
     Estoy Despierdo !""")
-
 
 
 bot.run("OTcyMzIwMDUwNTM3MTY4OTA2.GRGdJP.psw3c5lQICy9daJGuLF3cMg9YB5hANZYl5yDBc")

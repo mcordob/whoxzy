@@ -182,4 +182,4 @@ async def on_ready():
     Estoy Despierdo !""")
 
 
-bot.run("OTcyMzIwMDUwNTM3MTY4OTA2.GRGdJP.psw3c5lQICy9daJGuLF3cMg9YB5hANZYl5yDBc")
+bot.run("")
